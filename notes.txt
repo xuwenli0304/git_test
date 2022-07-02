@@ -1,10 +1,10 @@
-1 by default, if we call getbean with class name from ioc container, we will get the same object.
-  so by default the bean is single instance.
+1 on this step, if we remove the excludefilter, the notscan isntance can be created.
+  but now, the exception will be raised and caught.
 
-2 i guess if the creation of bean is managed by the ioc container(for exmaple with configuration annotation),
-  we cannot create it mamually any more.
-  to create bean with annotation with custom name, the class must be "clean"
+2 I wonder why nosuchbeandefinition cannot be caught?
 
+3 the excludefilter needs some annotation as input, in fact, we can write our own customed annotation
+  to determine which bean should not be loaded.
 
   
   

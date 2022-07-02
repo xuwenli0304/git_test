@@ -17,6 +17,15 @@ public class IoCTest {
 
         CleanUser cn = (CleanUser)ctx.getBean("cu");
         System.out.println(cn.getName());
+
+        try {
+            NotScan ns = (NotScan)ctx.getBean(NotScan.class);
+        } catch (Exception e) {
+            System.out.println("no such bean!");
+            e.printStackTrace();
+        }
+
+
 		ctx.close();
 	}
 }

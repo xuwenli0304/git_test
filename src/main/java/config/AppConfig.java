@@ -13,12 +13,14 @@ import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.context.annotation.ComponentScan;
 // import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.stereotype.Service;
 
 import config.pojo.*;
 
 
 @Configuration
-@ComponentScan(basePackages = {"config.*"})
+@ComponentScan(basePackages = {"config.*"}, excludeFilters = {@Filter(classes = {Service.class})})
 public class AppConfig {
 
     @Bean(name = "cu")
