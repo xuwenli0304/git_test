@@ -1,10 +1,10 @@
-1 as far as i can see, componentscan can only scan components with a common package prefix or components
-  on the next level.
+1 by default, if we call getbean with class name from ioc container, we will get the same object.
+  so by default the bean is single instance.
 
-2. application, whatever it is SpringApplication or AnnotationConfigApplicationContext, will contain a context,
-   context is like a namespace, and can be created with annotation of configuration.
-   configuration will create an ioc container, from the perspective of system design, there may be more than
-   one ioc container in runtime environment, but there may be default one. 
+2 i guess if the creation of bean is managed by the ioc container(for exmaple with configuration annotation),
+  we cannot create it mamually any more.
+  to create bean with annotation with custom name, the class must be "clean"
 
-3. the start command on windows is:
-cd 'd:\git_test'; & 'C:\Program Files\Java\jdk-18.0.1.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '@C:\Users\dell\AppData\Local\Temp\cp_bybe60kbqnhih2o3xb27tn2xn.argfile' 'config.IoCTest'
+
+  
+  

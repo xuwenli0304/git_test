@@ -1,20 +1,30 @@
 package config;
 
+import org.springframework.context.annotation.Bean;
+
 //package com.springboot.chapter3.config;
 
 // import java.util.Properties;
 
 // import javax.sql.DataSource;
 
-// import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import org.apache.commons.dbcp2.BasicDataSourceFactory;
 // import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 // import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 
+import config.pojo.*;
+
+
 @Configuration
 @ComponentScan(basePackages = {"config.*"})
 public class AppConfig {
+
+    @Bean(name = "cu")
+    public CleanUser getCleanUser(){
+        return new CleanUser("clean");
+    }
 	
 	// @Bean(name = "dataSource")
 	// public DataSource getDataSource() {

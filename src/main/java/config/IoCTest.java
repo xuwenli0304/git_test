@@ -10,8 +10,13 @@ public class IoCTest {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		User person = ctx.getBean(User.class);
-		person.printMyself();
+		User user1 = (User)ctx.getBean(User.class);
+        //User u = AppConfig.initUser();
+        User user2 = (User)ctx.getBean(User.class);
+		System.out.println("if they are the same user " + (user1 == user2));
+
+        CleanUser cn = (CleanUser)ctx.getBean("cu");
+        System.out.println(cn.getName());
 		ctx.close();
 	}
 }
