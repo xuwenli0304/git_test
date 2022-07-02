@@ -26,6 +26,8 @@ public class Chapter1Main {
 	@ResponseBody
 	public Map<String, String> test() {
 		Map<String, String> map = new HashMap<>();
+        // IoCTest i = new IoCTest();
+        // i.work();
 		map.put("key1", "value1");
 		return map;
 	}
