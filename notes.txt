@@ -1,0 +1,5 @@
+1. how to start the application?
+ mvn spring-boot:run
+
+2. by default, the sb's starter class will exist in directory src/main/java, and 
+the configuration file will exist in directory of src/main/resources
