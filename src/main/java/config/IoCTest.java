@@ -1,9 +1,13 @@
 package config;
 
+//import org.springframework.beans.factory.annotation.Autowired;
+
 // package com.springboot.chapter3.config;
 
 // import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+
 import config.pojo.*;
 
 public class IoCTest {
@@ -18,13 +22,15 @@ public class IoCTest {
         CleanUser cn = (CleanUser)ctx.getBean("cu");
         System.out.println(cn.getName());
 
-        try {
-            NotScan ns = (NotScan)ctx.getBean(NotScan.class);
-        } catch (Exception e) {
-            System.out.println("no such bean!");
-            e.printStackTrace();
-        }
+        // try {
+        //     NotScan ns = (NotScan)ctx.getBean(NotScan.class);
+        // } catch (Exception e) {
+        //     System.out.println("no such bean!");
+        //     e.printStackTrace();
+        // }
 
+        System.out.println(user1.getAnimal());
+        user1.getAnimal().eat();
 
 		ctx.close();
 	}

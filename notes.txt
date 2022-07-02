@@ -1,10 +1,13 @@
-1 on this step, if we remove the excludefilter, the notscan isntance can be created.
-  but now, the exception will be raised and caught.
+1 @Bean is usually create beans from the thrid party, not the framework itself.
 
-2 I wonder why nosuchbeandefinition cannot be caught?
+2 autowired is set with type, by type
 
-3 the excludefilter needs some annotation as input, in fact, we can write our own customed annotation
-  to determine which bean should not be loaded.
+3 if a java source code cannot be compiled into class files, there must be some errors 
+  in the source file.
+  after forcely remove the class files, we can use maven build or the sperific run
+  command to re-create class files.
 
-  
+4 autowired usually decorates members from a class which is also a bean.
+
+
   

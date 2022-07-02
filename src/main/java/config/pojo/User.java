@@ -1,9 +1,13 @@
 package config.pojo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 //package com.springboot.chapter3.pojo;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import config.pojo.definition.*;
 
 @Component("user")
 public class User {
@@ -13,6 +17,19 @@ public class User {
 	private String userName;
 	@Value("note_1")
 	private String note;
+
+
+	@Autowired
+	@Qualifier("dog")
+    private Animal animal;
+
+	public void setAnimal(Animal a) {
+		this.animal = a;
+	}
+
+	public Animal getAnimal(){
+		return this.animal;
+	}
 	
 	public Long getId() {
 		return id;
