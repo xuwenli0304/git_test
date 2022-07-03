@@ -1,28 +1,20 @@
-1 the workflow after bean is initialized is as follows
+1 environment can be autowired, it contains the environment variables, including those from the config file,
+  the output looks like:
+  ApplicationServletEnvironment {activeProfiles=[], defaultProfiles=[default], 
+  propertySources=[MapPropertySource {name='server.ports'}, 
+  ConfigurationPropertySourcesPropertySource {name='configurationProperties'}, 
+  StubPropertySource {name='servletConfigInitParams'}, 
+  ServletContextPropertySource {name='servletContextInitParams'}, 
+  PropertiesPropertySource {name='systemProperties'}, 
+  OriginAwareSystemEnvironmentPropertySource {name='systemEnvironment'}, 
+  RandomValuePropertySource {name='random'}, 
+  OriginTrackedMapPropertySource {name='Config resource 'class path resource [application.properties]' via location 'optional:classpath:/''}]}
 
-12:53:14.440 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'user'
-in constructor
-in setAnimal
-【User】调用BeanNameAware的setBeanName  beanName is user
-..........................【User】调用BeanFactoryAware的setBeanFactory config.pojo.User@194bcebf
-【User】调用ApplicationContextAware的setApplicationContext
-BeanPostProcessor调用postProcessBeforeInitialization方法，参数【User】【user】
-i am calling postConstruct method!
-BeanPostProcessor调用postProcessAfterInitialization方法，参数【User】【user】
+2 applicationcontext can also be autowired, with it we can get all the bean names created
 
----life period
+3 if we do not put componetscan on the starter class, our self-defined beans will not be created 
 
-12:53:14.522 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c5a99da, started on Sun Jul 03 12:53:14 CST 2022
-i am calling preDestroy method!
+4 we can use spring expression language to dynamically load config from config files.
 
-
-
-2 how to start the main application:
-cd 'd:\git_test'; & 'C:\Program Files\Java\jdk-18.0.1.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '@C:\Users\dell\AppData\Local\Temp\cp_7jtlaj58rkbdsmnbno535bvmc.argfile' 'Chapter1Main' 
-
-3 how to build self-contained jars:
-https://stackoverflow.com/questions/39975524/java-lang-noclassdeffounderror-org-springframework-context-applicationcontext-m
-after commenting another main:
-mvn spring-boot:run
-
-  
+5 if User class implements BeanFactoryAware, a circular dependency problem will be thrown, currectly
+  i do not know why.

@@ -19,7 +19,7 @@ import org.springframework.beans.BeansException;
 import config.pojo.definition.*;
 
 @Component("user")
-public class User implements BeanNameAware, BeanFactoryAware, ApplicationContextAware{
+public class User implements BeanNameAware, /*BeanFactoryAware,*/ ApplicationContextAware{
 
 	private Long id;
 
@@ -49,11 +49,11 @@ public class User implements BeanNameAware, BeanFactoryAware, ApplicationContext
                 + "】调用BeanNameAware的setBeanName  " + "beanName is " + beanName);
     }
 
-	@Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("..........................【" + this.getClass().getSimpleName()
-                + "】调用BeanFactoryAware的setBeanFactory " + beanFactory.getBean(this.beanName));
-    }
+	// @Override
+    // public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+    //     System.out.println("..........................【" + this.getClass().getSimpleName()
+    //             + "】调用BeanFactoryAware的setBeanFactory " + beanFactory.getBean(this.beanName));
+    // }
 
 	@Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
