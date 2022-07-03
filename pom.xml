@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>boot</groupId>
 	<artifactId>chapter1</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>chapter1 Maven Webapp</name>
 	<url>http://maven.apache.org</url>

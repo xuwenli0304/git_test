@@ -15,13 +15,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.FlashMapManager;
 
 import config.pojo.*;
 
 
 @Configuration
 @ComponentScan(basePackages = {"config.*"}, 
-lazyInit = true,
+lazyInit = false,
 excludeFilters = {@Filter(classes = {Service.class})})
 public class AppConfig {
 

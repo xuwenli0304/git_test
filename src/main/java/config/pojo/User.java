@@ -1,16 +1,25 @@
 package config.pojo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 
 //package com.springboot.chapter3.pojo;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.BeansException;
 import config.pojo.definition.*;
 
 @Component("user")
-public class User {
+public class User implements BeanNameAware, BeanFactoryAware, ApplicationContextAware{
 
 	private Long id;
 
@@ -30,6 +39,37 @@ public class User {
 		this.note = note;
 		this.ns = ns;
 		// this.animal = animal;
+	}
+
+	private String beanName;
+	@Override
+    public void setBeanName(String beanName) {
+		this.beanName = beanName;
+        System.out.println("【" + this.getClass().getSimpleName()
+                + "】调用BeanNameAware的setBeanName  " + "beanName is " + beanName);
+    }
+
+	@Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        System.out.println("..........................【" + this.getClass().getSimpleName()
+                + "】调用BeanFactoryAware的setBeanFactory " + beanFactory.getBean(this.beanName));
+    }
+
+	@Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        System.out.println("【" + this.getClass().getSimpleName()
+                + "】调用ApplicationContextAware的setApplicationContext");
+
+    }
+
+	@PostConstruct
+	public void pC(){
+		System.out.println("i am calling postConstruct method!");
+	}
+
+	@PreDestroy
+	public void pD(){
+		System.out.println("i am calling preDestroy method!");
 	}
 
 	public void setNotScan(NotScan ns){

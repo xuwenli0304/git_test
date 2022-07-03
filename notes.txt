@@ -1,9 +1,28 @@
-1 here we set option lazyinit as true, so if we do not get the bean from the ioc-container, the bean 
-  will not be created.
-  if now we get it explicitly, here we can see we do not initialize animal instance in the constructor,
-  but that member has been initialized as well. from the output, we can conclude that maybe the framework
-  tried to make every member initialized, if the animal member could not be initialized from the constructor,
-  the framework would find the respective set method to initialize it.
+1 the workflow after bean is initialized is as follows
 
+12:53:14.440 [main] DEBUG org.springframework.beans.factory.support.DefaultListableBeanFactory - Creating shared instance of singleton bean 'user'
+in constructor
+in setAnimal
+【User】调用BeanNameAware的setBeanName  beanName is user
+..........................【User】调用BeanFactoryAware的setBeanFactory config.pojo.User@194bcebf
+【User】调用ApplicationContextAware的setApplicationContext
+BeanPostProcessor调用postProcessBeforeInitialization方法，参数【User】【user】
+i am calling postConstruct method!
+BeanPostProcessor调用postProcessAfterInitialization方法，参数【User】【user】
+
+---life period
+
+12:53:14.522 [main] DEBUG org.springframework.context.annotation.AnnotationConfigApplicationContext - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3c5a99da, started on Sun Jul 03 12:53:14 CST 2022
+i am calling preDestroy method!
+
+
+
+2 how to start the main application:
+cd 'd:\git_test'; & 'C:\Program Files\Java\jdk-18.0.1.1\bin\java.exe' '-XX:+ShowCodeDetailsInExceptionMessages' '@C:\Users\dell\AppData\Local\Temp\cp_7jtlaj58rkbdsmnbno535bvmc.argfile' 'Chapter1Main' 
+
+3 how to build self-contained jars:
+https://stackoverflow.com/questions/39975524/java-lang-noclassdeffounderror-org-springframework-context-applicationcontext-m
+after commenting another main:
+mvn spring-boot:run
 
   
