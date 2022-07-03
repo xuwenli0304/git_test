@@ -18,6 +18,17 @@ public class User {
 	@Value("note_1")
 	private String note;
 
+	@Autowired(required = false)
+	private NotScan ns;
+
+	public void setNotScan(NotScan ns){
+		this.ns = ns;
+	}
+
+	public NotScan getNotScan(){
+		return this.ns;
+	}
+
 
 	@Autowired
 	@Qualifier("dog")

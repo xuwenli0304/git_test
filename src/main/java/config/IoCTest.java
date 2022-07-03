@@ -9,6 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component;
 
 import config.pojo.*;
+//import config.*;
 
 public class IoCTest {
 
@@ -31,6 +32,8 @@ public class IoCTest {
 
         System.out.println(user1.getAnimal());
         user1.getAnimal().eat();
+
+        System.out.println(user1.getNotScan() == null);
 
 		ctx.close();
 	}
