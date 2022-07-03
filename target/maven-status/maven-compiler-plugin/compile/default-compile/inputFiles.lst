@@ -1,6 +1,7 @@
 D:\git_test\src\main\java\config\pojo\BeanPostProcessorExample.java
 D:\git_test\src\main\java\config\pojo\CleanUser.java
 D:\git_test\src\main\java\config\IoCTest.java
+D:\git_test\src\main\java\config\pojo\PrefixLoad.java
 D:\git_test\src\main\java\config\pojo\ConfigFileInjection.java
 D:\git_test\src\main\java\config\pojo\User.java
 D:\git_test\src\main\java\config\pojo\NotScan.java

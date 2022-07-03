@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 
-import config.pojo.ConfigFileInjection;
+import config.pojo.*;
 
 // @SpringBootApplication
 // @Controller
@@ -35,11 +35,13 @@ public class Chapter1Main {
     Environment environment;
 
     @Autowired
+    private PrefixLoad prefixLoad;
+
+    @Autowired
     private ConfigFileInjection configFileInjection;
 
     @Autowired
     private ApplicationContext applicationContext;
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter1Main.class, args);
@@ -51,13 +53,14 @@ public class Chapter1Main {
 		Map<String, String> map = new HashMap<>();
         // IoCTest i = new IoCTest();
         // i.work();
-        System.out.println(environment.getProperty("server.port"));
-        System.out.println(environment.getProperty("a.b"));
-        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
-        System.out.println("xxxxxxxxxxxxxxxxxxx");
-        System.out.println(environment);
-        System.out.println(configFileInjection.getC());
-        System.out.println("..............." + this.ab);
+        // System.out.println(environment.getProperty("server.port"));
+        // System.out.println(environment.getProperty("a.b"));
+        // System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        // System.out.println("xxxxxxxxxxxxxxxxxxx");
+        // System.out.println(environment);
+        // System.out.println(configFileInjection.getC());
+        // System.out.println("..............." + this.ab);
+        System.out.println(prefixLoad.getA());
 		map.put("key1", "value1");
 		return map;
 	}

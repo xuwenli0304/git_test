@@ -2,5 +2,5 @@ config\pojo\CleanUser.class
 config\pojo\NotScan.class
 config\pojo\definition\Animal.class
 config\pojo\Cat.class
-Chapter1Main.class
+META-INF\spring-configuration-metadata.json
 config\AppConfig.class
