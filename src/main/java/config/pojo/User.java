@@ -23,12 +23,13 @@ public class User {
     private Animal animal;
 
 	public User(@Value("1") Long id, @Value("user_name_1") String userName, @Value("note_1") String note,
-	@Autowired(required = false) NotScan ns, @Autowired @Qualifier("dog") Animal animal){
+	@Autowired(required = false) NotScan ns){
+		System.out.println("in constructor");
 		this.id = id;
 		this.userName = userName;
 		this.note = note;
 		this.ns = ns;
-		this.animal = animal;
+		// this.animal = animal;
 	}
 
 	public void setNotScan(NotScan ns){
@@ -39,7 +40,10 @@ public class User {
 		return this.ns;
 	}
 
+	@Autowired 
+	@Qualifier("dog")
 	public void setAnimal(Animal a) {
+		System.out.println("in setAnimal");
 		this.animal = a;
 	}
 

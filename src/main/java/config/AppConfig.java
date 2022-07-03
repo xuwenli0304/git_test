@@ -20,7 +20,9 @@ import config.pojo.*;
 
 
 @Configuration
-@ComponentScan(basePackages = {"config.*"}, excludeFilters = {@Filter(classes = {Service.class})})
+@ComponentScan(basePackages = {"config.*"}, 
+lazyInit = true,
+excludeFilters = {@Filter(classes = {Service.class})})
 public class AppConfig {
 
     @Bean(name = "cu")

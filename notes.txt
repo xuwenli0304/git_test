@@ -1,13 +1,9 @@
-1 @Bean is usually create beans from the thrid party, not the framework itself.
-
-2 autowired is set with type, by type
-
-3 if a java source code cannot be compiled into class files, there must be some errors 
-  in the source file.
-  after forcely remove the class files, we can use maven build or the sperific run
-  command to re-create class files.
-
-4 autowired usually decorates members from a class which is also a bean.
+1 here we set option lazyinit as true, so if we do not get the bean from the ioc-container, the bean 
+  will not be created.
+  if now we get it explicitly, here we can see we do not initialize animal instance in the constructor,
+  but that member has been initialized as well. from the output, we can conclude that maybe the framework
+  tried to make every member initialized, if the animal member could not be initialized from the constructor,
+  the framework would find the respective set method to initialize it.
 
 
   
