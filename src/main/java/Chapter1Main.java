@@ -60,7 +60,19 @@ public class Chapter1Main {
         // System.out.println(environment);
         // System.out.println(configFileInjection.getC());
         // System.out.println("..............." + this.ab);
-        System.out.println(prefixLoad.getA());
+        boolean met = false;
+        String[] names = applicationContext.getBeanDefinitionNames();
+        for(String name: names){
+            if(name.equals("cat")){
+                met = true;
+            }
+        }
+        if(met){
+            System.out.println("-----------------met!");
+        }else{
+            System.out.println("-----------------not met!");
+        }
+        //System.out.println(prefixLoad.getA());
 		map.put("key1", "value1");
 		return map;
 	}
