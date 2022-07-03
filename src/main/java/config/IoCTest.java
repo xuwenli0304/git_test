@@ -29,11 +29,12 @@ public class IoCTest {
         //     System.out.println("no such bean!");
         //     e.printStackTrace();
         // }
+        System.out.println("testing begins...........");
+        user1.printMyself();
+        // System.out.println(user1.getAnimal());
+        // user1.getAnimal().eat();
 
-        System.out.println(user1.getAnimal());
-        user1.getAnimal().eat();
-
-        System.out.println(user1.getNotScan() == null);
+        // System.out.println(user1.getNotScan() == null);
 
 		ctx.close();
 	}

@@ -11,15 +11,25 @@ import config.pojo.definition.*;
 
 @Component("user")
 public class User {
-	@Value("1")
+
 	private Long id;
-	@Value("user_name_1")
+
 	private String userName;
-	@Value("note_1")
+
 	private String note;
 
-	@Autowired(required = false)
 	private NotScan ns;
+
+    private Animal animal;
+
+	public User(@Value("1") Long id, @Value("user_name_1") String userName, @Value("note_1") String note,
+	@Autowired(required = false) NotScan ns, @Autowired @Qualifier("dog") Animal animal){
+		this.id = id;
+		this.userName = userName;
+		this.note = note;
+		this.ns = ns;
+		this.animal = animal;
+	}
 
 	public void setNotScan(NotScan ns){
 		this.ns = ns;
@@ -28,11 +38,6 @@ public class User {
 	public NotScan getNotScan(){
 		return this.ns;
 	}
-
-
-	@Autowired
-	@Qualifier("dog")
-    private Animal animal;
 
 	public void setAnimal(Animal a) {
 		this.animal = a;
@@ -67,7 +72,8 @@ public class User {
 	}
 
     public void printMyself(){
-        System.out.println(this.id + "  " + this.userName + "  " + this.note);
+		this.animal.eat();
+        System.out.println(this.id + "  " + this.userName + "  " + this.note + "  " + (this.ns == null));
     }
 
 }
