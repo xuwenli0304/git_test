@@ -1,5 +1,5 @@
-1 it seems when i run test directly, the config file cannot be loaded.
-but when i run from the starter class, everything seems to become normal.
+1 at first when i did not add the @ImportSource annotation, a bean not found exception will be 
+  raised, that's correct since i use filter to intentionally not load that bean.
+  then after i put the @ImportSource annotation on the class, the missed bean is created.
 
-2 we can use another set of config file with spring.profiles.active config and @Profile 
-  annotation.
+2 classpath starts from directory java.

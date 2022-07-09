@@ -13,6 +13,7 @@ import org.apache.commons.dbcp2.BasicDataSourceFactory;
 import org.springframework.context.annotation.ComponentScan;
 // import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.FlashMapManager;
@@ -24,6 +25,7 @@ import config.pojo.*;
 @ComponentScan(basePackages = {"config.*"}, 
 lazyInit = false,
 excludeFilters = {@Filter(classes = {Service.class})})
+@ImportResource(value = {"classpath:spring-other.xml"})
 public class AppConfig {
 
     @Bean(name = "cu")
