@@ -13,7 +13,7 @@ import config.pojo.*;
 
 public class IoCTest {
 
-	public static void main(String[] args) {
+	public static void main1(String[] args) {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		User user1 = (User)ctx.getBean(User.class);
         //User u = AppConfig.initUser();
@@ -35,9 +35,9 @@ public class IoCTest {
         // // user1.getAnimal().eat();
 
         // // System.out.println(user1.getNotScan() == null);
-        // ConfigFileInjection cfi = (ConfigFileInjection)ctx.getBean(ConfigFileInjection.class);
-        // System.out.println("----------------------" + cfi.getC());
-        // System.out.println(ctx.getEnvironment().getProperty("server.port"));
+        ConfigFileInjection cfi = (ConfigFileInjection)ctx.getBean(ConfigFileInjection.class);
+        System.out.println("----------------------" + cfi.getC());
+        System.out.println(ctx.getEnvironment().getProperty("server.port"));
 		ctx.close();
 	}
 }

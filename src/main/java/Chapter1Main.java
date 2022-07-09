@@ -58,7 +58,7 @@ public class Chapter1Main {
         // System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
         // System.out.println("xxxxxxxxxxxxxxxxxxx");
         // System.out.println(environment);
-        // System.out.println(configFileInjection.getC());
+        System.out.println(configFileInjection.getC());
         // System.out.println("..............." + this.ab);
         boolean met = false;
         String[] names = applicationContext.getBeanDefinitionNames();

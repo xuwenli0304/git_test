@@ -1,3 +1,5 @@
-1 ConfigurableBeanFactory.SCOPE_PROTOTYPE, every time you retrieve a bean from ioc
-container, a new bean will be produced. if you set it as single instance, then 
-you can use it as single instance
+1 it seems when i run test directly, the config file cannot be loaded.
+but when i run from the starter class, everything seems to become normal.
+
+2 we can use another set of config file with spring.profiles.active config and @Profile 
+  annotation.
