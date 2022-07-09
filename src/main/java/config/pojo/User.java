@@ -14,11 +14,14 @@ import org.springframework.context.ApplicationContext;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.BeansException;
 import config.pojo.definition.*;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 
 @Component("user")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class User implements BeanNameAware, /*BeanFactoryAware,*/ ApplicationContextAware{
 
 	private Long id;

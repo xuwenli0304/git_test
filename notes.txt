@@ -1,20 +1,3 @@
-1 environment can be autowired, it contains the environment variables, including those from the config file,
-  the output looks like:
-  ApplicationServletEnvironment {activeProfiles=[], defaultProfiles=[default], 
-  propertySources=[MapPropertySource {name='server.ports'}, 
-  ConfigurationPropertySourcesPropertySource {name='configurationProperties'}, 
-  StubPropertySource {name='servletConfigInitParams'}, 
-  ServletContextPropertySource {name='servletContextInitParams'}, 
-  PropertiesPropertySource {name='systemProperties'}, 
-  OriginAwareSystemEnvironmentPropertySource {name='systemEnvironment'}, 
-  RandomValuePropertySource {name='random'}, 
-  OriginTrackedMapPropertySource {name='Config resource 'class path resource [application.properties]' via location 'optional:classpath:/''}]}
-
-2 applicationcontext can also be autowired, with it we can get all the bean names created
-
-3 if we do not put componetscan on the starter class, our self-defined beans will not be created 
-
-4 we can use spring expression language to dynamically load config from config files.
-
-5 if User class implements BeanFactoryAware, a circular dependency problem will be thrown, currectly
-  i do not know why.
+1 ConfigurableBeanFactory.SCOPE_PROTOTYPE, every time you retrieve a bean from ioc
+container, a new bean will be produced. if you set it as single instance, then 
+you can use it as single instance
