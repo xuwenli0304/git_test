@@ -12,6 +12,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
+import config.pojo.AnimalValidatorImpl;
+import config.pojo.definition.*;
 // import com.springboot.chapter4.aspect.validator.UserValidator;
 // import com.springboot.chapter4.aspect.validator.impl.UserValidatorImpl;
 // import com.springboot.chapter4.pojo.User;
@@ -20,8 +22,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyAspect {
 	
-	// @DeclareParents(value= "com.springboot.chapter4.aspect.service.impl.UserServiceImpl+", defaultImpl=UserValidatorImpl.class)
-	// public UserValidator userValidator;
+	@DeclareParents(value= "config.pojo.Dog", defaultImpl=AnimalValidatorImpl.class)
+	public AnimalValidator animalValidator;
 	
 	@Pointcut("execution(* config.pojo.Dog.eat(..))")
 	public void pointCut() {

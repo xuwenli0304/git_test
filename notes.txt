@@ -1,5 +1,9 @@
-1. use aspectJ to implement proxy. the strange thing is, this only works, visible
-   in the starter class.
+1. firstly we have a validator interface, then we have an implementation for it.
+   when we use @DeclareParents, it's just like we add the defaultImpl function to the value class.
+   so the name is @DeclareParents and we can cast the child type to the parent type(
+     the defaultImpl's respective interface, in fact.
+   ).
 
-2 the @Component annotation on the @Aspect class is required, otherwise the respective
-  apsect bean will not be created.
+2. adding the + sign will raise exceptions: https://segmentfault.com/q/1010000018606803
+
+3. usually we do not add parent to the pojo but the service.

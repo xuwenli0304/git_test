@@ -13,4 +13,9 @@ public class Cat implements Animal{
     public void eat(){
         System.out.println("eat fish");
     }
+
+    @Override
+    public String getState(){
+        return "c";
+    }
 }

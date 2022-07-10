@@ -9,4 +9,9 @@ public class Dog implements Animal{
     public void eat(){
         System.out.println("eat meat");
     }
+
+    @Override
+    public String getState(){
+        return "d";
+    }
 }
