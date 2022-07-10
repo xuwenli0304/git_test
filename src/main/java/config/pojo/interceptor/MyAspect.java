@@ -1,5 +1,6 @@
 package config.pojo.interceptor;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -25,14 +26,19 @@ public class MyAspect {
 	@DeclareParents(value= "config.pojo.Dog", defaultImpl=AnimalValidatorImpl.class)
 	public AnimalValidator animalValidator;
 	
-	@Pointcut("execution(* config.pojo.Dog.eat(..))")
+	@Pointcut("execution(* config.pojo.Dog.setThis(..))")
 	public void pointCut() {
 	}
 	
-	// @Before("pointCut() && args(user)")
-	// public void beforeParam(User user) {
-	// 	System.out.println("before ......");
-	// } 
+	@Before("pointCut() && args(val)")
+	public void beforeParam(JoinPoint jp, int val) {
+        Object[] args = jp.getArgs();
+		System.out.println("before000 ......" + val);
+        for(Object object: args){
+            System.out.println("before111 ......" + (Integer)object);
+        }
+        
+	} 
 	
 	@Before("pointCut()")
 	public void before() {

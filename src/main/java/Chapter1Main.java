@@ -78,7 +78,7 @@ public class Chapter1Main {
             System.out.println("-----------------not met!");
         }
         //System.out.println(prefixLoad.getA());
-        dog.eat();
+        dog.setThis(100);
         AnimalValidator animalValidator = (AnimalValidator)dog;
         System.out.println("the validate result...... " + animalValidator.validate(dog));
 		map.put("key1", "value1");

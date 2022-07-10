@@ -18,4 +18,9 @@ public class Cat implements Animal{
     public String getState(){
         return "c";
     }
+
+    @Override
+    public void setThis(int val){
+        
+    }
 }

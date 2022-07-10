@@ -14,4 +14,9 @@ public class Dog implements Animal{
     public String getState(){
         return "d";
     }
+
+    @Override
+    public void setThis(int val){
+        
+    }
 }
