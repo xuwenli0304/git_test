@@ -19,6 +19,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 
 import config.pojo.*;
+import config.pojo.definition.Animal;
 
 // @SpringBootApplication
 // @Controller
@@ -39,6 +40,9 @@ public class Chapter1Main {
 
     @Autowired
     private ConfigFileInjection configFileInjection;
+
+    @Autowired
+    private Animal dog;
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -73,6 +77,7 @@ public class Chapter1Main {
             System.out.println("-----------------not met!");
         }
         //System.out.println(prefixLoad.getA());
+        dog.eat();
 		map.put("key1", "value1");
 		return map;
 	}

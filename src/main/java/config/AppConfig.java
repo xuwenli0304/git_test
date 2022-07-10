@@ -22,7 +22,7 @@ import config.pojo.*;
 
 
 @Configuration
-@ComponentScan(basePackages = {"config.*"}, 
+@ComponentScan(basePackages = {"config.*", "config.pojo.interceptor"}, 
 lazyInit = false,
 excludeFilters = {@Filter(classes = {Service.class})})
 @ImportResource(value = {"classpath:spring-other.xml"})

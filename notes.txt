@@ -1,22 +1,5 @@
-we can think about proxy from the simplest case:
-1. firstly, we need a basic object, and the object's class must implements a interface.
-then, since we need to do interception, an interceptor is needed, that's natural.
-an interceptor must implements an interface, so that we can know which methods of the interceptor
-we can call, that's not strange either.
-now we have two raw meterials: an object and an interceptor.
-the next problem is how we can do to combine them, make them work together. 
+1. use aspectJ to implement proxy. the strange thing is, this only works, visible
+   in the starter class.
 
-2. here we need help from the jre, java running environment, to be more precise, the reflection and 
-interceptor function.
-the core method for doing this is:
-Object proxy = Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),
-				proxyBean);
-here we get a new "combined" object, it contains both the raw object and our interceptor. 
-
-3. the next question is how we can make the combined object work, we also define the behaviour which the 
-   interceptor can do to the basic object here, this is how the overrided invoke method works.
-
-4. the rest problems are small, in the around method, we need to use reflection to capture
-   which method the object is calling and what the parameters are. here we use a class Invocation to 
-   describe this process, and the core method for Invocation is call the method with "invoke" with the help 
-   of reflection.
+2 the @Component annotation on the @Aspect class is required, otherwise the respective
+  apsect bean will not be created.
