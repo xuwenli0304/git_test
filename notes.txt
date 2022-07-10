@@ -6,4 +6,7 @@
 
 2. adding the + sign will raise exceptions: https://segmentfault.com/q/1010000018606803
 
-3. usually we do not add parent to the pojo but the service.
+3. usually we do not add parent to the pojo but the service, and the case may be service is 
+   implemented by others and we cannot modify it.
+
+4. since the defaultImpl implemented interface, this approach also uses JDk proxy.
