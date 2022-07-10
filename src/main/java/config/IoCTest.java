@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 import config.pojo.*;
 //import config.*;
+import config.pojo.definition.HelloService;
+import config.pojo.interceptor.MyInterceptor;
 
 public class IoCTest {
 
@@ -41,6 +43,10 @@ public class IoCTest {
         // ConfigFileInjection cfi = (ConfigFileInjection)ctx.getBean(ConfigFileInjection.class);
         // System.out.println("----------------------" + cfi.getC());
         // System.out.println(ctx.getEnvironment().getProperty("server.port"));
-		ctx.close();
+		
+        HelloService hs = new HelloServiceImpl();
+        HelloService hsProxied = (HelloService) ProxyBean.getProxyBean(hs, new MyInterceptor());
+        hsProxied.sayHello("will");
+        ctx.close();
 	}
 }
