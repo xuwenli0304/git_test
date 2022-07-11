@@ -1,12 +1,5 @@
-1. firstly we have a validator interface, then we have an implementation for it.
-   when we use @DeclareParents, it's just like we add the defaultImpl function to the value class.
-   so the name is @DeclareParents and we can cast the child type to the parent type(
-     the defaultImpl's respective interface, in fact.
-   ).
+1. we can create many aspects and assign order number to them. the order determines the 
+   execution process like:
+   before 1 -> before 2 -> after 2 - > after 1
 
-2. adding the + sign will raise exceptions: https://segmentfault.com/q/1010000018606803
-
-3. usually we do not add parent to the pojo but the service, and the case may be service is 
-   implemented by others and we cannot modify it.
-
-4. since the defaultImpl implemented interface, this approach also uses JDk proxy.
+2 the @Order annotation and implementing the Ordered interface has same effect.

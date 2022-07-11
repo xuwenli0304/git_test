@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import config.pojo.*;
 import config.pojo.definition.Animal;
 import config.pojo.definition.AnimalValidator;
+import config.pojo.interceptor.MyAspect1;
 
 // @SpringBootApplication
 // @Controller
@@ -29,6 +31,11 @@ import config.pojo.definition.AnimalValidator;
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {"config.*"})
 public class Chapter1Main {
+
+    @Bean(name = "aspect1")
+    public MyAspect1 initMyAspect1(){
+        return new MyAspect1();
+    }
 
     @Value("${a.b}")
     private String ab;
@@ -79,8 +86,8 @@ public class Chapter1Main {
         }
         //System.out.println(prefixLoad.getA());
         dog.setThis(100);
-        AnimalValidator animalValidator = (AnimalValidator)dog;
-        System.out.println("the validate result...... " + animalValidator.validate(dog));
+        // AnimalValidator animalValidator = (AnimalValidator)dog;
+        // System.out.println("the validate result...... " + animalValidator.validate(dog));
 		map.put("key1", "value1");
 		return map;
 	}

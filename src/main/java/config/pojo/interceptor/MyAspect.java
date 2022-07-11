@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.DeclareParents;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 
 import config.pojo.AnimalValidatorImpl;
@@ -21,7 +22,12 @@ import config.pojo.definition.*;
 
 @Aspect
 @Component
-public class MyAspect {
+public class MyAspect implements Ordered{
+
+    @Override
+    public  int getOrder(){
+        return 2;
+    }
 	
 	@DeclareParents(value= "config.pojo.Dog", defaultImpl=AnimalValidatorImpl.class)
 	public AnimalValidator animalValidator;
@@ -42,12 +48,12 @@ public class MyAspect {
 	
 	@Before("pointCut()")
 	public void before() {
-		System.out.println("before ......");
+		System.out.println("FIRST before ......");
 	}
 	
 	@After("pointCut()")
 	public void after() {
-		System.out.println("after ......");
+		System.out.println("FIRST after ......");
 	}
 	
 	
