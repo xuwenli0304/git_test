@@ -1,5 +1,6 @@
-1. we can create many aspects and assign order number to them. the order determines the 
-   execution process like:
-   before 1 -> before 2 -> after 2 - > after 1
+1. datasorce is about the connections or auth management,
+   how to crud(jpa or mybatis) is another question
 
-2 the @Order annotation and implementing the Ordered interface has same effect.
+2 @EnableJpaRepositoriesis used to scan dao,  
+  @EntityScan is used to scan entity, 
+  do not add * at last!

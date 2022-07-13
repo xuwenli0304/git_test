@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "p",
+      "type": "config.pojo.PrefixLoad",
+      "sourceType": "config.pojo.PrefixLoad"
+    }
+  ],
+  "properties": [
+    {
+      "name": "p.a",
+      "type": "java.lang.String",
+      "sourceType": "config.pojo.PrefixLoad"
+    }
+  ],
+  "hints": []
+}

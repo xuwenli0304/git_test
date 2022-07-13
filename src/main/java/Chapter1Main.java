@@ -8,17 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 
+import config.dao.JpaUserRepository;
 import config.pojo.*;
 import config.pojo.definition.Animal;
 import config.pojo.definition.AnimalValidator;
@@ -27,9 +30,12 @@ import config.pojo.interceptor.MyAspect1;
 // @SpringBootApplication
 // @Controller
 // @EnableAutoConfiguration
+
 @RestController
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"config.*"})
+@ComponentScan(basePackages = {"config.*", "config.dao.*"})
+@EnableJpaRepositories(basePackages = "config.dao")
+@EntityScan(basePackages = "config.pojo")
 public class Chapter1Main {
 
     @Bean(name = "aspect1")
@@ -55,8 +61,20 @@ public class Chapter1Main {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private JpaUserRepository jpaUserRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter1Main.class, args);
+	}
+
+    @RequestMapping("/getUser")
+	@ResponseBody
+	public UserDB getUser(Long id) {
+		// 使用JPA接口查询对象
+        System.out.println("iiiiiiiiiii   " + id);
+		UserDB user = jpaUserRepository.findById(id).get();
+		return user;
 	}
 	
 	@RequestMapping("/test")
@@ -67,7 +85,7 @@ public class Chapter1Main {
         // i.work();
         // System.out.println(environment.getProperty("server.port"));
         // System.out.println(environment.getProperty("a.b"));
-        // System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
         // System.out.println("xxxxxxxxxxxxxxxxxxx");
         // System.out.println(environment);
         System.out.println(configFileInjection.getC());
