@@ -88,6 +88,22 @@ public class Chapter1Main {
 		return users;
 	}
 	
+    @RequestMapping("/getUsersJpaMade")
+	@ResponseBody
+	public List<UserDB> getUsersJpaMade(Long id, String userName, String note) {
+		// 使用JPA接口查询对象
+        System.out.println("iiiiiiiiiii comment   " + id + " " + userName + "  " + note);
+        List<UserDB> res1 = jpaUserRepository.findByUserNameLike("%"+userName+"%");
+        List<UserDB> res2 = jpaUserRepository.findByUserNameLikeOrNoteLike("%FAKE%", "%"+note+"%");
+        UserDB res3 = jpaUserRepository.getUserById(id);
+        System.out.println(res1 + " " + res2 + " " + res3);
+        res1.addAll(res2);
+        res1.add(res3);
+
+		// List<UserDB> users = jpaUserRepository.findUsers(userName, note);
+		return res1;
+	}
+
 	@RequestMapping("/test")
 	@ResponseBody
 	public Map<String, String> test() {

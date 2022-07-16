@@ -1,5 +1,5 @@
-1. the table name after from must be consistent with the one defined in 
-   Entity annotation.
+1. when we use jpa-defined like, we should make clear whether it's left %
+   or right % or both-side %
 
-2. the request url should be: http://localhost:8090/getUsers?userName=mi&note=o
-   and later i will do the parameters mapping
+2. on querying, we can use the jpa generated or @Query or the we declared
+   and the jpa run, totally 3 ways
