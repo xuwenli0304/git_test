@@ -3,6 +3,8 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -75,6 +77,15 @@ public class Chapter1Main {
         System.out.println("iiiiiiiiiii   " + id);
 		UserDB user = jpaUserRepository.findById(id).get();
 		return user;
+	}
+
+    @RequestMapping("/getUsers")
+	@ResponseBody
+	public List<UserDB> getUsers(String userName, String note) {
+		// 使用JPA接口查询对象
+        System.out.println("iiiiiiiiiii comment   " + userName + "  " + note);
+		List<UserDB> users = jpaUserRepository.findUsers(userName, note);
+		return users;
 	}
 	
 	@RequestMapping("/test")

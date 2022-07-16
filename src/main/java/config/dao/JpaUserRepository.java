@@ -12,9 +12,9 @@ import config.pojo.UserDB;
 
 @Repository
 public interface JpaUserRepository extends JpaRepository<UserDB, Long> {
-	// @Query("from user where user_name like concat('%', ?1, '%') " 
-    //     + "and note like concat('', ?2, '%')")
-	// public List<User> findUsers(String userName, String note);
+	@Query("from user_db where user_name like concat('%', ?1, '%') " 
+        + "and note like concat('', ?2, '%')")
+	public List<UserDB> findUsers(String userName, String note);
 	
 	/**
 	 * 按用户名称模糊查询

@@ -1,6 +1,5 @@
-1. datasorce is about the connections or auth management,
-   how to crud(jpa or mybatis) is another question
+1. the table name after from must be consistent with the one defined in 
+   Entity annotation.
 
-2 @EnableJpaRepositoriesis used to scan dao,  
-  @EntityScan is used to scan entity, 
-  do not add * at last!
+2. the request url should be: http://localhost:8090/getUsers?userName=mi&note=o
+   and later i will do the parameters mapping
