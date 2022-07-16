@@ -94,6 +94,28 @@ public class Chapter1Main {
         return jpaUserRepository.findAll();
     }
 
+    @Transactional
+    @RequestMapping("/updateUser")
+	@ResponseBody
+    public List<UserDB> updateWithQuery(UserDB user) {
+        this.entityManager.createNativeQuery("UPDATE t_user_1 set note=? where id=?")
+        .setParameter(1, user.getNote())
+        .setParameter(2, user.getId())
+        .executeUpdate();
+        return jpaUserRepository.findAll();
+    }
+
+    @Transactional
+    @RequestMapping("/deleteUser")
+	@ResponseBody
+    public List<UserDB> deleteWithQuery(UserDB user) {
+        this.entityManager.createNativeQuery("DELETE from t_user_1 where id=?")
+        .setParameter(1, user.getId())
+        .executeUpdate();
+        jpaUserRepository.deleteById(Long.valueOf(1));;
+        return jpaUserRepository.findAll();
+    }
+
     @RequestMapping("/getUser")
 	@ResponseBody
 	public UserDB getUser(Long id) {

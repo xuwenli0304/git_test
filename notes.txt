@@ -1,2 +1,8 @@
-1 use autowired entitymanager to implement insertion, and this method must
+1 use autowired entitymanager to implement update, and this method must
   be annotated with @Transactional
+
+2 auto create an object with the request parameters.
+
+3 how to avoid SQL injection?
+
+4 use both native ways and and api to delete items
