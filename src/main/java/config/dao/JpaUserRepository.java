@@ -9,9 +9,17 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import config.pojo.UserDB;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 
 @Repository
 public interface JpaUserRepository extends JpaRepository<UserDB, Long> {
+
+	// @PersistenceContext
+    // public EntityManager entityManager = null;
+
+
 	@Query("from user_db where user_name like concat('%', ?1, '%') " 
         + "and note like concat('', ?2, '%')")
 	public List<UserDB> findUsers(String userName, String note);

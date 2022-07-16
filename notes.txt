@@ -1,5 +1,2 @@
-1. when we use jpa-defined like, we should make clear whether it's left %
-   or right % or both-side %
-
-2. on querying, we can use the jpa generated or @Query or the we declared
-   and the jpa run, totally 3 ways
+1 use autowired entitymanager to implement insertion, and this method must
+  be annotated with @Transactional

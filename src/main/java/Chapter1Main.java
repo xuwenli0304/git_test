@@ -3,6 +3,11 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import java.util.List;
 
 
@@ -23,11 +28,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import config.dao.JpaUserRepository;
 import config.pojo.*;
 import config.pojo.definition.Animal;
 import config.pojo.definition.AnimalValidator;
 import config.pojo.interceptor.MyAspect1;
+
 
 // @SpringBootApplication
 // @Controller
@@ -39,6 +46,11 @@ import config.pojo.interceptor.MyAspect1;
 @EnableJpaRepositories(basePackages = "config.dao")
 @EntityScan(basePackages = "config.pojo")
 public class Chapter1Main {
+
+    @PersistenceContext
+    public EntityManager entityManager;
+
+
 
     @Bean(name = "aspect1")
     public MyAspect1 initMyAspect1(){
@@ -69,6 +81,18 @@ public class Chapter1Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter1Main.class, args);
 	}
+
+    @Transactional
+    @RequestMapping("/addUser")
+	@ResponseBody
+    public List<UserDB> insertWithQuery(UserDB user) {
+        this.entityManager.createNativeQuery("INSERT INTO t_user_1 (id, user_name, note) VALUES (?,?,?)")
+        .setParameter(1, user.getId())
+        .setParameter(2, user.getUserName())
+        .setParameter(3, user.getNote())
+        .executeUpdate();
+        return jpaUserRepository.findAll();
+    }
 
     @RequestMapping("/getUser")
 	@ResponseBody
