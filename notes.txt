@@ -1,8 +1,4 @@
-1 use autowired entitymanager to implement update, and this method must
-  be annotated with @Transactional
-
-2 auto create an object with the request parameters.
-
-3 how to avoid SQL injection?
-
-4 use both native ways and and api to delete items
+1. find more detailed logs because of configuration
+2. get to know what classpath is 
+3. todo: typehandler
+4. key points for mybatis: @MapperScanner, xml, a dao, a pojo, a session

@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.ibatis.type.Alias;
+
 // import org.apache.ibatis.type.Alias;
 
 // import com.springboot.chapter5.converter.SexConverter;
@@ -18,7 +20,7 @@ import javax.persistence.Table;
 @Entity(name = "user_db")
 // 定义映射的表
 @Table(name = "t_user_1")
-//@Alias(value = "user")// MyBatis指定别名
+@Alias(value = "user_mb")// MyBatis指定别名
 public class UserDB {
 	// 标明主键
 	@Id

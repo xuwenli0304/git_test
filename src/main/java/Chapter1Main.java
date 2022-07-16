@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 import java.util.List;
 
-
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Repository;
 
 
 import config.dao.JpaUserRepository;
+import config.dao.MyBatisUserDao;
 import config.pojo.*;
 import config.pojo.definition.Animal;
 import config.pojo.definition.AnimalValidator;
@@ -45,10 +47,14 @@ import config.pojo.interceptor.MyAspect1;
 @ComponentScan(basePackages = {"config.*", "config.dao.*"})
 @EnableJpaRepositories(basePackages = "config.dao")
 @EntityScan(basePackages = "config.pojo")
+@MapperScan(basePackages="config", annotationClass = Repository.class)
 public class Chapter1Main {
 
     @PersistenceContext
     public EntityManager entityManager;
+
+    @Autowired
+    private MyBatisUserDao myBatisUserDao;
 
 
 
@@ -81,6 +87,16 @@ public class Chapter1Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter1Main.class, args);
 	}
+
+    @RequestMapping("/getUserM")
+	@ResponseBody
+	public UserDB getUserM(Long id) {
+		// 使用JPA接口查询对象
+        System.out.println("iiiiiiiiiii   " + id);
+		UserDB user = myBatisUserDao.getUser(id);
+		return user;
+	}
+    
 
     @Transactional
     @RequestMapping("/addUser")
