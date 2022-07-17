@@ -3,7 +3,9 @@
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -12,6 +14,8 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +42,7 @@ import config.pojo.*;
 import config.pojo.definition.Animal;
 import config.pojo.definition.AnimalValidator;
 import config.pojo.interceptor.MyAspect1;
+import config.pojo.interceptor.MyPlugin;
 
 
 // @SpringBootApplication
@@ -89,6 +94,24 @@ public class Chapter1Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Chapter1Main.class, args);
 	}
+
+
+    @Autowired 
+    SqlSessionFactory sqlSessionFactory = null; 
+
+    // Spring Bean 生命周期执行方法 加入插件
+    @PostConstruct 
+    public void initMyBatis() { 
+    // 插件实例
+    Interceptor plugin =new MyPlugin(); 
+    // 设置插件属性
+    Properties properties = new Properties();
+    properties.setProperty ("keyl" , "valuel") ; 
+    plugin.setProperties(properties) ; 
+    //在 sqlSessionFactory 中添加插件
+    sqlSessionFactory.getConfiguration().addInterceptor(plugin); 
+    System.out.println("working..........................");
+}
 
     @RequestMapping("/getUserM")
 	@ResponseBody

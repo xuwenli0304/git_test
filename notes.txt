@@ -1,9 +1,10 @@
-1. find more detailed logs because of configuration
-2. get to know what classpath is 
-3. todo: typehandler
-4. key points for mybatis: @MapperScanner, xml, a dao, a pojo, 
-   fix: the session object bean is uncessary, we only need the above four.
+1. mybatis four components introduction:
+https://www.cnblogs.com/cxuanBlog/tag/MyBatis/
 
---- new:
-1. the session object bean is uncessary
-2. json typehandler for jpa
+demo:
+https://mybatis.org/mybatis-3/configuration.html#plugins
+http://www.mybatis.cn/archives/685.html
+
+these are low-level apis, should be override with caution.
+
+

@@ -3,6 +3,10 @@ package config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Properties;
+
+import javax.annotation.PostConstruct;
+
 //package com.springboot.chapter3.config;
 
 // import java.util.Properties;
@@ -10,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 // import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSourceFactory;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperFactoryBean;
 // import org.springframework.context.annotation.Bean;
@@ -23,6 +28,8 @@ import org.springframework.web.servlet.FlashMapManager;
 
 import config.dao.MyBatisUserDao;
 import config.pojo.*;
+import config.pojo.interceptor.MyInterceptor;
+import config.pojo.interceptor.MyPlugin;
 
 
 @Configuration
@@ -31,6 +38,8 @@ lazyInit = false,
 excludeFilters = {@Filter(classes = {Service.class})})
 @ImportResource(value = {"classpath:spring-other.xml"})
 public class AppConfig {
+
+		
 
 	// @Autowired
 	// public SqlSessionFactory sqlSessionFactory;
