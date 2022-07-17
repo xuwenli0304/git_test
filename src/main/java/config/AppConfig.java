@@ -32,17 +32,17 @@ excludeFilters = {@Filter(classes = {Service.class})})
 @ImportResource(value = {"classpath:spring-other.xml"})
 public class AppConfig {
 
-	@Autowired
-	public SqlSessionFactory sqlSessionFactory;
+	// @Autowired
+	// public SqlSessionFactory sqlSessionFactory;
 	
-	@Bean 
-	public MapperFactoryBean<MyBatisUserDao> initMyBatisUserDao() {
-	     MapperFactoryBean<MyBatisUserDao> bean = new MapperFactoryBean<>();
-	     bean.setMapperInterface(MyBatisUserDao.class);
-	     bean.setSqlSessionFactory(sqlSessionFactory);
-	    //  TypeHandler<SexEnum> sexTypeHandler = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry().getTypeHandler(SexEnum.class);
-	     return bean;
-	}
+	// @Bean 
+	// public MapperFactoryBean<MyBatisUserDao> initMyBatisUserDao() {
+	//      MapperFactoryBean<MyBatisUserDao> bean = new MapperFactoryBean<>();
+	//      bean.setMapperInterface(MyBatisUserDao.class);
+	//      bean.setSqlSessionFactory(sqlSessionFactory);
+	//     //  TypeHandler<SexEnum> sexTypeHandler = sqlSessionFactory.getConfiguration().getTypeHandlerRegistry().getTypeHandler(SexEnum.class);
+	//      return bean;
+	// }
 
 
     @Bean(name = "cu")

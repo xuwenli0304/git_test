@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import org.mybatis.spring.annotation.MapperScan;
@@ -91,7 +93,6 @@ public class Chapter1Main {
     @RequestMapping("/getUserM")
 	@ResponseBody
 	public UserDB getUserM(Long id) {
-		// 使用JPA接口查询对象
         System.out.println("iiiiiiiiiii   " + id);
 		UserDB user = myBatisUserDao.getUser(id);
 		return user;
@@ -117,6 +118,21 @@ public class Chapter1Main {
         this.entityManager.createNativeQuery("UPDATE t_user_1 set note=? where id=?")
         .setParameter(1, user.getNote())
         .setParameter(2, user.getId())
+        .executeUpdate();
+        return jpaUserRepository.findAll();
+    }
+
+    @Transactional
+    @RequestMapping("/updateUserPet")
+	@ResponseBody
+    public List<UserDB> updateUpWithQuery(Long id, String petName) {
+        Dog dog = new Dog();
+        dog.setName(petName);
+        String dogString = new Gson().toJson(dog);
+        System.out.println("now the pet in json " + dogString);
+        this.entityManager.createNativeQuery("UPDATE t_user_1 set pet=? where id=?")
+        .setParameter(1, dogString)
+        .setParameter(2, id)
         .executeUpdate();
         return jpaUserRepository.findAll();
     }

@@ -2,6 +2,7 @@ package config.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
+import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.apache.ibatis.type.Alias;
+
+import config.converter.PetConvertJPA;
 
 // import org.apache.ibatis.type.Alias;
 
@@ -33,6 +36,18 @@ public class UserDB {
 	private String userName = null;
 
 	private String note = null;
+
+	@Column(name = "pet")
+	@Convert(converter = PetConvertJPA.class)
+	private Dog dog = null;
+
+	public void setDog(Dog dog){
+		this.dog = dog;
+	}
+
+	public Dog getDog(){
+		return this.dog;
+	}
 
 	// 定义转换器
 	// @Convert(converter = SexConverter.class)

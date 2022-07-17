@@ -5,6 +5,17 @@ import config.pojo.definition.*;
 
 @Component
 public class Dog implements Animal{
+
+    private String name;
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
     @Override
     public void eat(){
         System.out.println("eat meat");
