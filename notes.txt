@@ -1,8 +1,13 @@
-1 use auto-generated primary key to refill the pojo object.
-2 use transaction in mybatis, and jdbc's transaction is from javax,
-  mybatis's transaction is native spring.
-  from the detailed log:
-  2022-07-24 20:48:52.711 DEBUG 15548 --- [nio-8090-exec-1] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization deregistering SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31db27c0]
-  2022-07-24 20:48:52.712 DEBUG 15548 --- [nio-8090-exec-1] org.mybatis.spring.SqlSessionUtils       : Transaction synchronization closing SqlSession [org.apache.ibatis.session.defaults.DefaultSqlSession@31db27c0]  
-  we know the transaction works out.
-3 
+1. on required level, this log says we are successful:
+2022-07-24 21:54:12.666 DEBUG 15616 --- [nio-8090-exec-2] o.s.orm.jpa.JpaTransactionManager        : Participating in existing transaction
+
+2. REQUIRE_NEW works similarly.
+   2022-07-24 21:58:43.999 DEBUG 3168 --- [nio-8090-exec-1] o.s.orm.jpa.JpaTransactionManager        : Suspending current transaction, creating new transaction with name [config.MyBatisService.addUserMPart]
+   2022-07-24 21:58:44.422 DEBUG 3168 --- [nio-8090-exec-1] o.s.orm.jpa.JpaTransactionManager        : Suspending current transaction, creating new transaction with name [config.MyBatisService.addUserMPart]
+
+3. remember not to put them in the same class, or the proxy will invalidate.
+
+4. NESTED needs the db to support savepoint, if sub-transaction fails,
+   do not rollback the current.
+   if db not support, use RN instead.
+   NESTED has derivation relation, while RN not.

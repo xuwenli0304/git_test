@@ -35,7 +35,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 
+import config.MyBatisService;
 import config.dao.JpaUserRepository;
 import config.dao.MyBatisUserDao;
 import config.pojo.*;
@@ -51,7 +53,7 @@ import config.pojo.interceptor.MyPlugin;
 
 @RestController
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"config.*", "config.dao.*"})
+@ComponentScan(basePackages = {"config.*", "config.dao.*", "config"})
 @EnableJpaRepositories(basePackages = "config.dao")
 @EntityScan(basePackages = "config.pojo")
 @MapperScan(basePackages="config", annotationClass = Repository.class)
@@ -121,19 +123,27 @@ public class Chapter1Main {
 		return user;
 	}
 
+    @Autowired
+    public MyBatisService myBatisService;
+
     @RequestMapping("/addUserM")
 	@ResponseBody
     @org.springframework.transaction.annotation.Transactional(isolation = Isolation.READ_COMMITTED,
-    timeout = 1)
+    timeout = 1, propagation = Propagation.REQUIRES_NEW)
 	public Map<String, Object> addUserM(String userName, String note) {
 		UserDB user = new UserDB();
 		user.setUserName(userName);
 		user.setNote(note);
 		// 结果会回填主键，返回插入条数
-		int update = myBatisUserDao.insertUser(user);
+		int update1 = myBatisService.addUserMPart(user);
+
+        user.setUserName(userName + "1");
+        user.setNote(note + "1");
+        int update2 = myBatisService.addUserMPart(user);
+
 		Map<String, Object> result = new HashMap<>();
-		result.put("success", update == 1);
-		result.put("user", user);
+		result.put("update1", update1);
+		result.put("update2", update2);
 		return result;
 	}
     
