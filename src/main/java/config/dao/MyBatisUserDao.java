@@ -9,4 +9,6 @@ import config.pojo.UserDB;
 @Repository
 public interface MyBatisUserDao {
 	public UserDB getUser(Long id);
+	
+	public int insertUser(UserDB user);
 }

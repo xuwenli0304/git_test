@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Isolation;
 
 import config.dao.JpaUserRepository;
 import config.dao.MyBatisUserDao;
@@ -119,6 +119,22 @@ public class Chapter1Main {
         System.out.println("iiiiiiiiiii   " + id);
 		UserDB user = myBatisUserDao.getUser(id);
 		return user;
+	}
+
+    @RequestMapping("/addUserM")
+	@ResponseBody
+    @org.springframework.transaction.annotation.Transactional(isolation = Isolation.READ_COMMITTED,
+    timeout = 1)
+	public Map<String, Object> addUserM(String userName, String note) {
+		UserDB user = new UserDB();
+		user.setUserName(userName);
+		user.setNote(note);
+		// 结果会回填主键，返回插入条数
+		int update = myBatisUserDao.insertUser(user);
+		Map<String, Object> result = new HashMap<>();
+		result.put("success", update == 1);
+		result.put("user", user);
+		return result;
 	}
     
 

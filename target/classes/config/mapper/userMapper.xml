@@ -6,4 +6,8 @@
     <select id="getUser" parameterType="long" resultType="user_mb">
         select id, user_name as userName, pet as Dog, note from t_user_1 where id = #{id}
     </select>
+
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+		  insert into t_user_1 (user_name, note) value(#{userName}, #{note})
+	  </insert>
 </mapper>
